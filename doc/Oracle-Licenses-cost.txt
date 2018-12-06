@@ -1,0 +1,102 @@
+﻿费用计算结果：按最低消费计算
+Oracle Licenses总价：
+使用Oracle各个功能的总费用：¥48,6000.00 + ¥11,7750.00 + ¥23,5250.00 + ¥23,5250.00 + ¥11,775.00 = ￥1086025.00
+
+最低消费：
+License Number(2台Oracle服务器) * 每台Oracle授权费用 = ￥1086025 * 2 = ￥2172050/1年 + 服务费
+
+
+Oracle两种授权方式
+1、按CPU(Process)数
+2、按用户数(Named User Plus)
+
+
+
+License有效期的分类：（不论哪一种授权）
+1年、2年、3年、4年、5年、永久，价格依次增加
+
+
+
+Oracle售后服务价格：
+首年服务费：￥9720.85
+购买Oracle的License都包含首年的服务费，以后的费用按每年原价的22%计算。
+
+
+
+生产环境Oracle使用到的功能：
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+Oracle功能收费标准：
+Enterprise Edition：             ¥48,600.00 - ¥486,068.00
+Partitioning：                   ¥11,775.00 - ¥117,680.00
+OLAP：                           ¥23,525.00 - ¥235,359.00
+Data Mining：                    ¥23,525.00 - ¥235,359.00
+Real Application Testing：       ¥11,775.00 - ¥117,680.00
+Oracle功能费用可能会有偏差，具体需要咨询Oracle官方商务。
+https://shop.oracle.com/apex/f?p=dstore:2:0::NO:RIR,RP,2:PROD_HIER_ID:4509881204651805720002
+
+
+
+
+线上业务有2台Oracle服务器，测试环境1台
+测试和开发环境中的Oracle暂不作计算，但按照Oracle官方的规定开发环境中的Oracle服务器也需要授权。
+
+线上服务器物理CPU个数
+# cat /proc/cpuinfo  | grep 'physical id' | sort | uniq | wc -l
+2
+
+线上每个物理CPU的核心个数
+# cat /proc/cpuinfo  | grep 'cpu cores' | sort | uniq
+cpu cores    : 10
+
+
+SQL> select cpu_count_current,CPU_CORE_COUNT_CURRENT,CPU_SOCKET_COUNT_CURRENT from v$license;
+
+CPU_COUNT_CURRENT CPU_CORE_COUNT_CURRENT CPU_SOCKET_COUNT_CURRENT
+----------------- ---------------------- ------------------------
+	       40		      20			2
+
+
+
+1、按CPU(Process)数授权
+
+Oracle Licenses = 物理CPU个数(Socket) * 物理核心(Core) * Intel CPU每个核的系数 * 功能单价
+
+Enterprise Edition：¥48,600.00
+2 * 10 * 0.5 * ¥48,600.00 = ¥48,6000.00
+
+Partitioning：¥11,775.00
+2 * 10 * 0.5 * ¥11,775.00 = ¥11,7750.00
+
+OLAP： ¥23,525.00
+2 * 10 * 0.5 * ¥23,525.00 = ¥23,5250.00
+
+Data Mining：¥23,525.00
+2 * 10 * 0.5 * ¥23,525.00 = ¥23,5250.00
+
+Real Application Testing：¥11,775.00
+2 * 10 * 0.5 * ¥11,775.00 = ¥11,7750.00
+
+Oracle Licenses总价：¥48,6000.00 + ¥11,7750.00 + ¥23,5250.00 + ¥23,5250.00 + ¥11,775.00 = ￥1086025
+
+最低消费：
+License Number(2台Oracle服务器) * 每台Oracle授权费用 = ￥1086025 * 2 = ￥2172050/1年 + 服务费
+
+
+
+
+
+
+
+2、按用户数(Named User Plus)授权
+Oracle数据库按照用户数授权，是指最终端的连接到Oracle数据库的用户数。按照用户数来买的时候只能用于一个系统，不允许在多台机器上安装。每一个访问Oracle数据库的用户，无论是自然人还是设备，都算作一个用户 (Named User)。如果是B/S架构，那么是指连接到中间件上的用户数。
+
+个人版本=1user*PC数
+标准版1=服务器的CPU数*5
+标准版=服务器的CPU数*10user
+企业版=服务器的CPU数*25user；
+
+
+
+
